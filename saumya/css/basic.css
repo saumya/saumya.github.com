@@ -38,14 +38,14 @@ article
   background : #444;
   min-height : 20em;
   
-  margin-top : -80px;/* hack :  only works on github, should be 0 otherwise! */
+  margin-top : -1em;/* hack :  only works on github, should be 0 otherwise! */
 }
 
 footer
 {
   background:#444;
   color : #555;
-  min-height:6em;
+  min-height:4em;
   text-align:center;
 }
 
