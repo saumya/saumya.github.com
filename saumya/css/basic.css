@@ -1,0 +1,35 @@
+body
+{
+  background: #ccc;
+}
+#baseContainer
+{
+  width:80%;
+  background: #bbb;
+  margin: 0px auto;
+}
+
+header
+{
+  background:#aaa;
+  text-align: center;
+}
+
+article
+{
+  background : #DDD;
+  min-height : 500px;
+}
+
+footer
+{
+  background:#FFF;
+  text-align:center;
+}
+
+
+.coda-slider-wrapper
+{
+  width : 840px;
+  margin : 0px auto;
+}
