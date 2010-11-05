@@ -40,11 +40,14 @@
       $().ready(function() {
         $('#coda-slider-1').codaSlider({
           dynamicArrows: true,
-          dynamicTabs: true,
-          slideEaseDuration: 1500,
-          slideEaseFunction: "easeOutElastic",
-          autoHeightEaseDuration: 1500,
-          autoHeightEaseFunction: "easeInOutElastic"
+          dynamicArrowLeftText: "Back",
+          dynamicArrowRightText : "Next",
+          dynamicTabs: false,
+          slideEaseDuration: 2500,
+          slideEaseFunction: "easeInOutElastic",
+          autoHeightEaseDuration: 2500,
+          autoHeightEaseFunction: "easeInOutElastic",
+          autoHeight:false
         });
       });
      </script>
@@ -69,7 +72,7 @@
 		
 		<nav>
 			<ul>
-				<li><a href="http://www.saumyaray.com">saumya</a></li>
+				<li></li>
 			</ul>
 		</nav>
 	
@@ -78,6 +81,7 @@
 	<article>
 	  
 	  <div class="coda-slider-wrapper">
+	    
       <div class="coda-slider preload" id="coda-slider-1">
         <div class="panel">
           <div class="panel-wrapper">
@@ -96,10 +100,10 @@
         </div>
         <div class="panel">
           <div class="panel-wrapper">
-            <h2 class="title">My Blog</h2>
+            <h2 class="title">My Blogs</h2>
             <p>
               <a href="http://www.saumyaray.wordpress.com">Saumya : Technical</a><br/>
-              <a href="http://www.saumyaray.com">saumya : Everything Else</a>
+              <a href="http://www.saumyaray.com">Saumya : Everything Else</a>
             </p>
           </div>
         </div>
@@ -113,14 +117,14 @@
         
       </div><!-- .coda-slider -->
     </div><!-- .coda-slider-wrapper -->
-	  
 	</article>
 	
 	<footer>
 		creadits : 
-		<a href="http://github.com">github</a>,
-		<a href="http://html5reset.org/">html5reset</a>
-		<a href="http://plugins.jquery.com/project/Coda-Slider">Coda-Slider 2.0</a>
+		<a href="http://github.com">github</a> | 
+		<a href="http://html5reset.org">html5reset</a> | 
+		<a href="http://plugins.jquery.com/project/Coda-Slider">Coda-Slider 2.0</a> | 
+		<a href="http://jquery.com">jQuery</a>
 	</footer>
 
 </div>
