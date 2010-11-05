@@ -38,7 +38,7 @@ article
   background : #444;
   min-height : 20em;
   
-  margin-top : -6em;/* hack :  only works on github, should be 0 otherwise! */
+  margin-top : -7em;/* hack :  only works on github, should be 0 otherwise! */
 }
 
 footer
