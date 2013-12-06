@@ -1,23 +1,161 @@
 <!DOCTYPE html>
+
 <html lang="en">
-<head>
+
+<head class="html5reset-bare-bones">
+
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="chrome=1, IE=edge">
-	<title>CatchThemAll,Everywhere.</title>
+	
+	<!--[if IE]><![endif]-->
+	
+	<title>Saumya</title>
+	
+	<meta name="description" content="Saumya's projects">
+
+	<link rel="stylesheet" href="_/css/main.css">
+	<link rel="stylesheet" href="_/css/_print/main.css" media="print">
+	
+	<!--[if IE]>
+	<link rel="stylesheet" href="_/css/_patches/win-ie-all.css">
+	<![endif]-->
+	<!--[if IE 7]>
+	<link rel="stylesheet" href="_/css/_patches/win-ie7.css">
+	<![endif]-->
+	<!--[if lt IE 7]>
+	<link rel="stylesheet" href="_/css/_patches/win-ie-old.css">
+	<![endif]-->
+	
+	
+	<!-- ...........................Project settings........................... -->
+	<!-- Begin Stylesheets -->
+    <!-- link rel="stylesheet" href="saumya/css/reset.css" media="screen" / -->
+    <link rel="stylesheet" href="saumya/css/coda-slider-2.0.css" media="screen" />
+    <link rel="stylesheet" href="saumya/css/basic.css" media="screen" />
+  <!-- End Stylesheets -->
+  <!-- Begin JavaScript -->
+    <script type="text/javascript" src="saumya/js/jquery/jquery-1.4.3.min.js"></script>
+    <script type="text/javascript" src="saumya/js/jquery/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="saumya/js/coda_slider/jquery.coda-slider-2.0.js"></script>
+     <script type="text/javascript">
+      $().ready(function() {
+        $('#coda-slider-1').codaSlider({
+          dynamicArrows: true,
+          dynamicArrowLeftText: "Back",
+          dynamicArrowRightText : "Next",
+          dynamicTabs: false,
+          slideEaseDuration: 2500,
+          slideEaseFunction: "easeInOutElastic",
+          autoHeightEaseDuration: 2500,
+          autoHeightEaseFunction: "easeInOutElastic",
+          autoHeight: false
+        });
+      });
+     </script>
+  <!-- End JavaScript -->
+  <!-- ...........................Project settings........................... -->
+
 </head>
-<body style="padding: 0; margin: 0; background-color: #FFFFFF;">
-	<!-- <div id="haxe:trace" style="position: absolute; z-index: 2147483647; display: none;"></div> -->
+
+<body>
+
+<div id="baseContainer">
+  
+	<header>
+		
+		<a href="http://github.com/saumya">
+			<img style="position: absolute; top: 0; right: 0; border: 0;" 
+					src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" 
+					alt="Fork me on GitHub" />
+		</a>
 	
+		<h1>Saumya</h1>
+		
+		<nav>
+			
+		</nav>
 	
+	</header>
 	
-	<div id="haxe:openfl" style="background-color: #FFFFFF; width: 100%; height: 100%" data-framerate="30"></div>
+	<article>
+	  
+	  <div class="coda-slider-wrapper">
+	    
+      <div class="coda-slider preload" id="coda-slider-1">
+        <div class="panel">
+          <div class="panel-wrapper">
+            <h2 class="title">MathIsFun2</h2>
+            <p>The opensource game is known as "Math Is Fun Too" in its full form.</p>
+            <p>
+              My first iphone game. This asks questions about addition, subtraction, multiplication and division.
+              The game uses teh accelerometer of the iphone to change the mode of the question. Each side is a different mode. Mode actually means one of these four, addition, subtraction, multiplication, division.
+              Originally made in the intention to educate the pre-school kids. Looking at its potential, made opensource. The intention is, more and more mathematics games for the kids.
+              That does mean the game can be played by elders too.
+            </p>
+            <p>
+              This game is made with the opensource <a href="http://www.sparrow-framework.org">Sparrow-Framework</a> game engine. Which it self is a very nice and easy to use game engine.<br/>
+              The source files of <a href="https://github.com/saumya/MathIsFun2">MathIsFun2</a>.
+            </p>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-wrapper">
+            <h2 class="title">CatchThemAll</h2>
+            <p>The opensource game is known as "Catch Them All".</p>
+            <p>
+              My second iphone game.
+              This utilises the power of multi-touch support on the iOS (iphone/ipad/ipod-touch etc). 
+              The game play is simple, one has to choose the color which is maximum time displayed.
+              There are 5 different colors and they are shown randomly with a number of times in rows and columns. The player has to choose which colour is displayed maximum times at a particular time.
+              This selection is done by single fingure touch to five fingure touch.
+              <br/>
+              Originally made in the intention to educate the pre-school kids. Looking at its potential, made opensource. The intention is, more and more education games for the kids.
+              That does mean the game can be played by elders too.
+            </p>
+            <p>
+              This game is made with the opensource <a href="http://www.sparrow-framework.org">Sparrow-Framework</a> game engine. Which it self is a very nice and easy to use game engine.<br/>
+              The source files of <a href="https://github.com/saumya/CatchThemAll">CatchThemAll</a>.
+            </p>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-wrapper">
+            <h2 class="title">Cocoa Libs</h2>
+            <p>
+              All my Cocoa research and finding lead to <a href="https://github.com/saumya/CocoaLibs">this library</a><br/>
+              May be helpful to someone out there. Another reason being, all my experiement codes to stay at one place.
+            </p>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-wrapper">
+            <h2 class="title">My Thoughts</h2>
+            <p>
+              <a href="http://www.saumyaray.wordpress.com">Saumya : Technical</a><br/>
+              <a href="http://www.saumyaray.com">Saumya : Everything Else</a>
+            </p>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-wrapper">
+            <h2 class="title">Contact</h2>
+            <p> mail : 2saumyaray@gmail.com </p>
+            <p> twitter : @saumya </p>
+          </div>
+        </div>
+        
+      </div><!-- .coda-slider -->
+    </div><!-- .coda-slider-wrapper -->
+	</article>
 	
-	
-	
-	<script>function winParameters () { return {}; }</script>
-	<script id="haxe:openfl:script" type="text/javascript" src="./CatchThemAllE.js"></script>
-	
-	
-	
+	<footer>
+		creadits : 
+		<a href="http://github.com">github</a> | 
+		<a href="http://html5reset.org">html5reset</a> | 
+		<a href="http://plugins.jquery.com/project/Coda-Slider">Coda-Slider 2.0</a> | 
+		<a href="http://jquery.com">jQuery</a>
+	</footer>
+
+</div>
+
 </body>
 </html>
