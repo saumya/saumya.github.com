@@ -27,43 +27,61 @@ ApplicationMain.main = function() {
 	ApplicationMain.loaders.set("images/1_red.png",loader);
 	ApplicationMain.total++;
 	var loader1 = new flash.display.Loader();
-	ApplicationMain.loaders.set("images/2_green.png",loader1);
+	ApplicationMain.loaders.set("images/1_red@2x.png",loader1);
 	ApplicationMain.total++;
 	var loader2 = new flash.display.Loader();
-	ApplicationMain.loaders.set("images/3_blue.png",loader2);
+	ApplicationMain.loaders.set("images/2_green.png",loader2);
 	ApplicationMain.total++;
 	var loader3 = new flash.display.Loader();
-	ApplicationMain.loaders.set("images/4_yellow.png",loader3);
+	ApplicationMain.loaders.set("images/2_green@2x.png",loader3);
 	ApplicationMain.total++;
 	var loader4 = new flash.display.Loader();
-	ApplicationMain.loaders.set("images/5_pink.png",loader4);
+	ApplicationMain.loaders.set("images/3_blue.png",loader4);
 	ApplicationMain.total++;
 	var loader5 = new flash.display.Loader();
-	ApplicationMain.loaders.set("images/btn_ok.png",loader5);
+	ApplicationMain.loaders.set("images/3_blue@2x.png",loader5);
 	ApplicationMain.total++;
 	var loader6 = new flash.display.Loader();
-	ApplicationMain.loaders.set("images/circle_1.png",loader6);
+	ApplicationMain.loaders.set("images/4_yellow.png",loader6);
 	ApplicationMain.total++;
 	var loader7 = new flash.display.Loader();
-	ApplicationMain.loaders.set("images/correct.png",loader7);
+	ApplicationMain.loaders.set("images/4_yellow@2x.png",loader7);
 	ApplicationMain.total++;
 	var loader8 = new flash.display.Loader();
-	ApplicationMain.loaders.set("images/incorrect.png",loader8);
+	ApplicationMain.loaders.set("images/5_pink.png",loader8);
 	ApplicationMain.total++;
 	var loader9 = new flash.display.Loader();
-	ApplicationMain.loaders.set("images/instruction.png",loader9);
+	ApplicationMain.loaders.set("images/5_pink@2x.png",loader9);
 	ApplicationMain.total++;
 	var loader10 = new flash.display.Loader();
-	ApplicationMain.loaders.set("images/life_line_bg_gfx.png",loader10);
+	ApplicationMain.loaders.set("images/btn_ok.png",loader10);
 	ApplicationMain.total++;
 	var loader11 = new flash.display.Loader();
-	ApplicationMain.loaders.set("images/life_line_gfx.png",loader11);
+	ApplicationMain.loaders.set("images/circle_1.png",loader11);
 	ApplicationMain.total++;
 	var loader12 = new flash.display.Loader();
-	ApplicationMain.loaders.set("images/logo.png",loader12);
+	ApplicationMain.loaders.set("images/correct.png",loader12);
 	ApplicationMain.total++;
 	var loader13 = new flash.display.Loader();
-	ApplicationMain.loaders.set("images/timeUp.png",loader13);
+	ApplicationMain.loaders.set("images/incorrect.png",loader13);
+	ApplicationMain.total++;
+	var loader14 = new flash.display.Loader();
+	ApplicationMain.loaders.set("images/instruction.png",loader14);
+	ApplicationMain.total++;
+	var loader15 = new flash.display.Loader();
+	ApplicationMain.loaders.set("images/instruction@2x.png",loader15);
+	ApplicationMain.total++;
+	var loader16 = new flash.display.Loader();
+	ApplicationMain.loaders.set("images/life_line_bg_gfx.png",loader16);
+	ApplicationMain.total++;
+	var loader17 = new flash.display.Loader();
+	ApplicationMain.loaders.set("images/life_line_gfx.png",loader17);
+	ApplicationMain.total++;
+	var loader18 = new flash.display.Loader();
+	ApplicationMain.loaders.set("images/logo.png",loader18);
+	ApplicationMain.total++;
+	var loader19 = new flash.display.Loader();
+	ApplicationMain.loaders.set("images/timeUp.png",loader19);
 	ApplicationMain.total++;
 	var resourcePrefix = "__ASSET__:bitmap_";
 	var _g = 0, _g1 = haxe.Resource.listNames();
@@ -82,9 +100,9 @@ ApplicationMain.main = function() {
 		var $it0 = ApplicationMain.loaders.keys();
 		while( $it0.hasNext() ) {
 			var path = $it0.next();
-			var loader14 = ApplicationMain.loaders.get(path);
-			loader14.contentLoaderInfo.addEventListener("complete",ApplicationMain.loader_onComplete);
-			loader14.load(new flash.net.URLRequest(path));
+			var loader20 = ApplicationMain.loaders.get(path);
+			loader20.contentLoaderInfo.addEventListener("complete",ApplicationMain.loader_onComplete);
+			loader20.load(new flash.net.URLRequest(path));
 		}
 		var $it1 = ApplicationMain.urlLoaders.keys();
 		while( $it1.hasNext() ) {
@@ -1367,18 +1385,33 @@ var DefaultAssetLibrary = function() {
 	DefaultAssetLibrary.path.set("images/1_red.png","images/1_red.png");
 	var value = Reflect.field(openfl.AssetType,"image".toUpperCase());
 	DefaultAssetLibrary.type.set("images/1_red.png",value);
+	DefaultAssetLibrary.path.set("images/1_red@2x.png","images/1_red@2x.png");
+	var value = Reflect.field(openfl.AssetType,"image".toUpperCase());
+	DefaultAssetLibrary.type.set("images/1_red@2x.png",value);
 	DefaultAssetLibrary.path.set("images/2_green.png","images/2_green.png");
 	var value = Reflect.field(openfl.AssetType,"image".toUpperCase());
 	DefaultAssetLibrary.type.set("images/2_green.png",value);
+	DefaultAssetLibrary.path.set("images/2_green@2x.png","images/2_green@2x.png");
+	var value = Reflect.field(openfl.AssetType,"image".toUpperCase());
+	DefaultAssetLibrary.type.set("images/2_green@2x.png",value);
 	DefaultAssetLibrary.path.set("images/3_blue.png","images/3_blue.png");
 	var value = Reflect.field(openfl.AssetType,"image".toUpperCase());
 	DefaultAssetLibrary.type.set("images/3_blue.png",value);
+	DefaultAssetLibrary.path.set("images/3_blue@2x.png","images/3_blue@2x.png");
+	var value = Reflect.field(openfl.AssetType,"image".toUpperCase());
+	DefaultAssetLibrary.type.set("images/3_blue@2x.png",value);
 	DefaultAssetLibrary.path.set("images/4_yellow.png","images/4_yellow.png");
 	var value = Reflect.field(openfl.AssetType,"image".toUpperCase());
 	DefaultAssetLibrary.type.set("images/4_yellow.png",value);
+	DefaultAssetLibrary.path.set("images/4_yellow@2x.png","images/4_yellow@2x.png");
+	var value = Reflect.field(openfl.AssetType,"image".toUpperCase());
+	DefaultAssetLibrary.type.set("images/4_yellow@2x.png",value);
 	DefaultAssetLibrary.path.set("images/5_pink.png","images/5_pink.png");
 	var value = Reflect.field(openfl.AssetType,"image".toUpperCase());
 	DefaultAssetLibrary.type.set("images/5_pink.png",value);
+	DefaultAssetLibrary.path.set("images/5_pink@2x.png","images/5_pink@2x.png");
+	var value = Reflect.field(openfl.AssetType,"image".toUpperCase());
+	DefaultAssetLibrary.type.set("images/5_pink@2x.png",value);
 	DefaultAssetLibrary.path.set("images/btn_ok.png","images/btn_ok.png");
 	var value = Reflect.field(openfl.AssetType,"image".toUpperCase());
 	DefaultAssetLibrary.type.set("images/btn_ok.png",value);
@@ -1394,6 +1427,9 @@ var DefaultAssetLibrary = function() {
 	DefaultAssetLibrary.path.set("images/instruction.png","images/instruction.png");
 	var value = Reflect.field(openfl.AssetType,"image".toUpperCase());
 	DefaultAssetLibrary.type.set("images/instruction.png",value);
+	DefaultAssetLibrary.path.set("images/instruction@2x.png","images/instruction@2x.png");
+	var value = Reflect.field(openfl.AssetType,"image".toUpperCase());
+	DefaultAssetLibrary.type.set("images/instruction@2x.png",value);
 	DefaultAssetLibrary.path.set("images/life_line_bg_gfx.png","images/life_line_bg_gfx.png");
 	var value = Reflect.field(openfl.AssetType,"image".toUpperCase());
 	DefaultAssetLibrary.type.set("images/life_line_bg_gfx.png",value);
@@ -1990,7 +2026,7 @@ com.saumya.catchThemAll.ApplicationView.prototype = $extend(flash.display.Sprite
 		}
 	}
 	,animateOut: function(cRow) {
-		motion.Actuate.tween(cRow,0.8 * (2 * Math.random()),{ x : -1000}).ease(motion.easing.Quad.get_easeIn()).onComplete($bind(this,this.animOutComplete),[cRow]);
+		motion.Actuate.tween(cRow,0.8 * (2 * Math.random()),{ x : -2000}).ease(motion.easing.Quad.get_easeIn()).onComplete($bind(this,this.animOutComplete),[cRow]);
 	}
 	,animateIn: function(cRow) {
 		var xVal = 0;
@@ -2058,7 +2094,7 @@ com.saumya.catchThemAll.ApplicationView.prototype = $extend(flash.display.Sprite
 			while(_g1 < _g) {
 				var i = _g1++;
 				var cRow = this.allRows[i];
-				cRow.set_x(1000);
+				cRow.set_x(2000);
 				cRow.shuffleColors();
 				this.animateIn(cRow);
 			}
@@ -2571,16 +2607,16 @@ com.saumya.catchThemAll.ui.HomeView.prototype = $extend(flash.display.Sprite.pro
 	,initialize: function() {
 		this.logo = new com.saumya.core.ui.shape.Logo();
 		this.colorRow = new com.saumya.catchThemAll.ui.ColorRowInstruction();
+		this.btnOK = new flash.display.Sprite();
+		this.btnOK.addChild(new flash.display.Bitmap(openfl.Assets.getBitmapData("images/btn_ok.png")));
+		this.btnOK.set_width(80);
+		this.btnOK.set_height(44);
 		this.colorRow.set_x(15);
 		this.colorRow.set_y(110);
 		this.instruction = new flash.display.Bitmap(openfl.Assets.getBitmapData("images/instruction.png"));
 		this.instruction.set_y(180);
-		this.btnOK = new flash.display.Sprite();
-		this.btnOK.addChild(new flash.display.Bitmap(openfl.Assets.getBitmapData("images/btn_ok.png")));
 		this.btnOK.set_x(135);
 		this.btnOK.set_y(400);
-		this.btnOK.set_width(80);
-		this.btnOK.set_height(44);
 		this.btnOK.addEventListener(flash.events.MouseEvent.CLICK,$bind(this,this.onUserClick));
 		this.construct();
 	}
@@ -2602,8 +2638,10 @@ com.saumya.catchThemAll.ui.LifeView.prototype = $extend(flash.display.Sprite.pro
 	}
 	,onUserClick: function(e) {
 		this.lifeCounter.set_visible(!this.lifeCounter.get_visible());
+		this.lifeText.set_visible(!this.lifeText.get_visible());
 	}
 	,construct: function() {
+		this.lifeCounter.set_visible(this.lifeText.set_visible(false));
 		this.addChild(this.bg);
 		this.addChild(this.life);
 		this.addChild(this.lifeText);
@@ -2613,7 +2651,7 @@ com.saumya.catchThemAll.ui.LifeView.prototype = $extend(flash.display.Sprite.pro
 		this.bg = new flash.display.Bitmap(openfl.Assets.getBitmapData("images/life_line_bg_gfx.png"));
 		this.life = new flash.display.Bitmap(openfl.Assets.getBitmapData("images/life_line_gfx.png"));
 		this.bg.set_x(0);
-		this.bg.set_y(50);
+		this.bg.set_y(10);
 		this.life.set_x(this.bg.get_x() + 5);
 		this.life.set_y(this.bg.get_y() + 5);
 		this.lifeText = new flash.text.TextField();
@@ -2630,7 +2668,7 @@ com.saumya.catchThemAll.ui.LifeView.prototype = $extend(flash.display.Sprite.pro
 		formatGeneral.color = 16777215;
 		this.lifeText.set_defaultTextFormat(formatGeneral);
 		this.lifeText.set_x(0);
-		this.lifeText.set_y(0);
+		this.lifeText.set_y(30);
 		this.lifeText.set_text("LIFE");
 		this.lifeCounter.set_defaultTextFormat(formatGeneral);
 		this.lifeCounter.set_x(0);
