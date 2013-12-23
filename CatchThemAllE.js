@@ -1336,6 +1336,9 @@ openfl.AssetLibrary.prototype = {
 	loadSound: function(id,handler) {
 		handler(this.getSound(id));
 	}
+	,loadMusic: function(id,handler) {
+		handler(this.getMusic(id));
+	}
 	,loadMovieClip: function(id,handler) {
 		handler(this.getMovieClip(id));
 	}
@@ -1359,6 +1362,9 @@ openfl.AssetLibrary.prototype = {
 	}
 	,getPath: function(id) {
 		return null;
+	}
+	,getMusic: function(id) {
+		return this.getSound(id);
 	}
 	,getMovieClip: function(id) {
 		return null;
@@ -1450,6 +1456,9 @@ DefaultAssetLibrary.prototype = $extend(openfl.AssetLibrary.prototype,{
 	loadSound: function(id,handler) {
 		handler(this.getSound(id));
 	}
+	,loadMusic: function(id,handler) {
+		handler(this.getMusic(id));
+	}
 	,loadFont: function(id,handler) {
 		handler(this.getFont(id));
 	}
@@ -1483,6 +1492,9 @@ DefaultAssetLibrary.prototype = $extend(openfl.AssetLibrary.prototype,{
 	,getPath: function(id) {
 		return DefaultAssetLibrary.path.get(id);
 	}
+	,getMusic: function(id) {
+		return new flash.media.Sound(new flash.net.URLRequest(DefaultAssetLibrary.path.get(id)));
+	}
 	,getFont: function(id) {
 		return js.Boot.__cast(Type.createInstance(DefaultAssetLibrary.className.get(id),[]) , flash.text.Font);
 	}
@@ -1504,7 +1516,7 @@ DefaultAssetLibrary.prototype = $extend(openfl.AssetLibrary.prototype,{
 	,exists: function(id,type) {
 		var assetType = DefaultAssetLibrary.type.get(id);
 		if(assetType != null) {
-			if(assetType == type || type == openfl.AssetType.SOUND && (assetType == openfl.AssetType.MUSIC || assetType == openfl.AssetType.SOUND)) return true;
+			if(assetType == type || (type == openfl.AssetType.SOUND || type == openfl.AssetType.MUSIC) && (assetType == openfl.AssetType.MUSIC || assetType == openfl.AssetType.SOUND)) return true;
 			if(type == openfl.AssetType.BINARY || type == null) return true;
 		}
 		return false;
@@ -2141,6 +2153,8 @@ com.saumya.catchThemAll.ApplicationView.prototype = $extend(flash.display.Sprite
 		this.addChild(this.userResponseDisplay);
 		this.addChild(this.scoreView);
 		this.scoreView.set_visible(true);
+		var mc = this.ccModel.getMaxCountColor();
+		this.userResponseDisplay.renderCorrectColor(mc.getColor());
 	}
 	,construct: function() {
 		this.addChild(this.bg);
@@ -2657,9 +2671,11 @@ com.saumya.catchThemAll.ui.LifeView.prototype = $extend(flash.display.Sprite.pro
 		this.lifeText = new flash.text.TextField();
 		this.lifeText.selectable = false;
 		this.lifeText.set_autoSize("CENTER");
+		this.lifeText.embedFonts = true;
 		this.lifeCounter = new flash.text.TextField();
 		this.lifeCounter.selectable = false;
 		this.lifeCounter.set_autoSize("CENTER");
+		this.lifeCounter.embedFonts = true;
 		var font = openfl.Assets.getFont("fonts/ArchitectsDaughter.ttf");
 		var formatGeneral = new flash.text.TextFormat();
 		formatGeneral.font = font.fontName;
@@ -2698,17 +2714,23 @@ com.saumya.catchThemAll.ui.ResponseDisplay.prototype = $extend(flash.display.Spr
 		this.timeUp.set_visible(true);
 		this.correct.set_visible(false);
 		this.inCorrect.set_visible(false);
+		this.correctColorView.set_visible(true);
 	}
 	,showResponse: function(isCorrect) {
 		if(isCorrect) {
 			this.correct.set_visible(true);
 			this.inCorrect.set_visible(false);
 			this.timeUp.set_visible(false);
+			this.correctColorView.set_visible(false);
 		} else {
 			this.correct.set_visible(false);
 			this.inCorrect.set_visible(true);
 			this.timeUp.set_visible(false);
+			this.correctColorView.set_visible(true);
 		}
+	}
+	,renderCorrectColor: function(color) {
+		this.correctColorView.setColor(color);
 	}
 	,notify: function() {
 		var ev = new com.saumya.core.events.UserEvent(com.saumya.core.events.UserEvent.MODAL_LAYER_CLICK);
@@ -2721,6 +2743,7 @@ com.saumya.catchThemAll.ui.ResponseDisplay.prototype = $extend(flash.display.Spr
 		this.correct.set_visible(false);
 		this.inCorrect.set_visible(false);
 		this.timeUp.set_visible(false);
+		this.correctColorView.set_visible(false);
 	}
 	,construct: function() {
 		this.addChild(this.correct);
@@ -2729,6 +2752,9 @@ com.saumya.catchThemAll.ui.ResponseDisplay.prototype = $extend(flash.display.Spr
 		this.correct.set_x(this.correct.set_y(-(this.correct.get_width() / 2)));
 		this.inCorrect.set_x(this.inCorrect.set_y(-(this.inCorrect.get_width() / 2)));
 		this.timeUp.set_x(this.timeUp.set_y(-(this.timeUp.get_width() / 2)));
+		this.correctColorView.set_scaleX(this.correctColorView.set_scaleY(0.75));
+		this.correctColorView.set_y(2 * this.correctColorView.get_height());
+		this.addChild(this.correctColorView);
 		this.render();
 	}
 	,initialize: function() {
@@ -2741,6 +2767,7 @@ com.saumya.catchThemAll.ui.ResponseDisplay.prototype = $extend(flash.display.Spr
 		this.correct.set_visible(false);
 		this.inCorrect.set_visible(false);
 		this.timeUp.set_visible(false);
+		this.correctColorView = new com.saumya.core.ui.shape.ColorSquare();
 		this.addEventListener(flash.events.MouseEvent.CLICK,$bind(this,this.onUserClick));
 		this.construct();
 	}
@@ -2829,6 +2856,7 @@ com.saumya.catchThemAll.ui.ScoreCardView.prototype = $extend(flash.display.Sprit
 		this.correct.set_text("CORRECT:0");
 		this.wrong.set_text("Wrong:0");
 		this.total.selectable = this.correct.selectable = this.wrong.selectable = false;
+		this.total.embedFonts = true;
 		this.addEventListener(flash.events.Event.ADDED_TO_STAGE,$bind(this,this.onAddedToStage));
 	}
 	,__class__: com.saumya.catchThemAll.ui.ScoreCardView
@@ -2984,6 +3012,7 @@ com.saumya.core.ui.shape.ColorSquare = function() {
 	this.numText.set_text("" + 0);
 	this.numText.set_x(this.numText.set_y(-30));
 	this.numText.selectable = false;
+	this.numText.embedFonts = true;
 };
 $hxClasses["com.saumya.core.ui.shape.ColorSquare"] = com.saumya.core.ui.shape.ColorSquare;
 com.saumya.core.ui.shape.ColorSquare.__name__ = ["com","saumya","core","ui","shape","ColorSquare"];
@@ -3672,7 +3701,6 @@ flash.display.Bitmap = function(inBitmapData,inPixelSnapping,inSmoothing) {
 	this.smoothing = inSmoothing;
 	if(inBitmapData != null) {
 		this.set_bitmapData(inBitmapData);
-		this.bitmapData.__referenceCount++;
 		if(this.bitmapData.__referenceCount == 1) this.__graphics = new flash.display.Graphics(this.bitmapData.___textureBuffer);
 	}
 	if(this.pixelSnapping == null) this.pixelSnapping = flash.display.PixelSnapping.AUTO;
@@ -5991,6 +6019,12 @@ flash.display.Stage.prototype = $extend(flash.display.DisplayObjectContainer.pro
 	,get_displayState: function() {
 		return this.displayState;
 	}
+	,set_color: function(col) {
+		return this.__backgroundColour = col;
+	}
+	,get_color: function() {
+		return this.__backgroundColour;
+	}
 	,set_backgroundColor: function(col) {
 		return this.__backgroundColour = col;
 	}
@@ -6283,7 +6317,7 @@ flash.display.Stage.prototype = $extend(flash.display.DisplayObjectContainer.pro
 		this.__invalid = true;
 	}
 	,__class__: flash.display.Stage
-	,__properties__: $extend(flash.display.DisplayObjectContainer.prototype.__properties__,{set_backgroundColor:"set_backgroundColor",get_backgroundColor:"get_backgroundColor",set_displayState:"set_displayState",get_displayState:"get_displayState",set_focus:"set_focus",get_focus:"get_focus",set_frameRate:"set_frameRate",get_frameRate:"get_frameRate",get_fullScreenHeight:"get_fullScreenHeight",get_fullScreenWidth:"get_fullScreenWidth",set_quality:"set_quality",get_quality:"get_quality",set_showDefaultContextMenu:"set_showDefaultContextMenu",get_showDefaultContextMenu:"get_showDefaultContextMenu",get_stageHeight:"get_stageHeight",get_stageWidth:"get_stageWidth"})
+	,__properties__: $extend(flash.display.DisplayObjectContainer.prototype.__properties__,{set_backgroundColor:"set_backgroundColor",get_backgroundColor:"get_backgroundColor",set_color:"set_color",get_color:"get_color",set_displayState:"set_displayState",get_displayState:"get_displayState",set_focus:"set_focus",get_focus:"get_focus",set_frameRate:"set_frameRate",get_frameRate:"get_frameRate",get_fullScreenHeight:"get_fullScreenHeight",get_fullScreenWidth:"get_fullScreenWidth",set_quality:"set_quality",get_quality:"get_quality",set_showDefaultContextMenu:"set_showDefaultContextMenu",get_showDefaultContextMenu:"get_showDefaultContextMenu",get_stageHeight:"get_stageHeight",get_stageWidth:"get_stageWidth"})
 });
 flash.display._Stage = {}
 flash.display._Stage.TouchInfo = function() {
@@ -6386,9 +6420,11 @@ flash.events.TextEvent.__super__ = flash.events.Event;
 flash.events.TextEvent.prototype = $extend(flash.events.Event.prototype,{
 	__class__: flash.events.TextEvent
 });
-flash.events.ErrorEvent = function(type,bubbles,cancelable,text) {
+flash.events.ErrorEvent = function(type,bubbles,cancelable,text,id) {
+	if(id == null) id = 0;
 	flash.events.TextEvent.call(this,type,bubbles,cancelable);
 	this.text = text;
+	this.errorID = id;
 };
 $hxClasses["flash.events.ErrorEvent"] = flash.events.ErrorEvent;
 flash.events.ErrorEvent.__name__ = ["flash","events","ErrorEvent"];
@@ -9852,6 +9888,7 @@ motion.actuators.GenericActuator.prototype = {
 		if(this._onUpdate != null) this.callMethod(this._onUpdate,this._onUpdateParams);
 	}
 	,callMethod: function(method,params) {
+		if(params == null) params = [];
 		return method.apply(method,params);
 	}
 	,autoVisible: function(value) {
@@ -10023,8 +10060,10 @@ motion.actuators.SimpleActuator.prototype = $extend(motion.actuators.GenericActu
 				isField = false;
 				start = Reflect.getProperty(this.target,i);
 			}
-			details = new motion.actuators.PropertyDetails(this.target,i,start,Reflect.field(this.properties,i) - start,isField);
-			this.propertyDetails.push(details);
+			if(js.Boot.__instanceof(start,Float)) {
+				details = new motion.actuators.PropertyDetails(this.target,i,start,this.getField(this.properties,i) - start,isField);
+				this.propertyDetails.push(details);
+			}
 		}
 		this.detailsLength = this.propertyDetails.length;
 		this.initialized = true;
@@ -10110,11 +10149,13 @@ motion.Actuate.motionPath = function(target,duration,properties,overwrite) {
 motion.Actuate.pause = function(target) {
 	if(js.Boot.__instanceof(target,motion.actuators.GenericActuator)) (js.Boot.__cast(target , motion.actuators.GenericActuator)).pause(); else {
 		var library = motion.Actuate.getLibrary(target,false);
-		var _g = 0;
-		while(_g < library.length) {
-			var actuator = library[_g];
-			++_g;
-			actuator.pause();
+		if(library != null) {
+			var _g = 0;
+			while(_g < library.length) {
+				var actuator = library[_g];
+				++_g;
+				actuator.pause();
+			}
 		}
 	}
 }
@@ -10145,11 +10186,13 @@ motion.Actuate.reset = function() {
 motion.Actuate.resume = function(target) {
 	if(js.Boot.__instanceof(target,motion.actuators.GenericActuator)) (js.Boot.__cast(target , motion.actuators.GenericActuator)).resume(); else {
 		var library = motion.Actuate.getLibrary(target,false);
-		var _g = 0;
-		while(_g < library.length) {
-			var actuator = library[_g];
-			++_g;
-			actuator.resume();
+		if(library != null) {
+			var _g = 0;
+			while(_g < library.length) {
+				var actuator = library[_g];
+				++_g;
+				actuator.resume();
+			}
 		}
 	}
 }
@@ -10818,6 +10861,7 @@ motion.easing.QuadEaseOut.prototype = {
 	,__class__: motion.easing.QuadEaseOut
 }
 openfl.AssetCache = function() {
+	this.enabled = true;
 	this.bitmapData = new haxe.ds.StringMap();
 	this.font = new haxe.ds.StringMap();
 	this.sound = new haxe.ds.StringMap();
@@ -10911,6 +10955,24 @@ openfl.Assets.getMovieClip = function(id) {
 	} else console.log("[openfl.Assets] There is no asset library named \"" + libraryName + "\"");
 	return null;
 }
+openfl.Assets.getMusic = function(id,useCache) {
+	if(useCache == null) useCache = true;
+	openfl.Assets.initialize();
+	if(useCache && openfl.Assets.cache.enabled && openfl.Assets.cache.sound.exists(id)) return openfl.Assets.cache.sound.get(id);
+	var libraryName = id.substring(0,id.indexOf(":"));
+	var symbolName = HxOverrides.substr(id,id.indexOf(":") + 1,null);
+	var library = openfl.Assets.getLibrary(libraryName);
+	if(library != null) {
+		if(library.exists(symbolName,openfl.AssetType.MUSIC)) {
+			if(library.isLocal(symbolName,openfl.AssetType.MUSIC)) {
+				var sound = library.getMusic(symbolName);
+				if(useCache && openfl.Assets.cache.enabled) openfl.Assets.cache.sound.set(id,sound);
+				return sound;
+			} else console.log("[openfl.Assets] Sound asset \"" + id + "\" exists, but only asynchronously");
+		} else console.log("[openfl.Assets] There is no Sound asset with an ID of \"" + id + "\"");
+	} else console.log("[openfl.Assets] There is no asset library named \"" + libraryName + "\"");
+	return null;
+}
 openfl.Assets.getPath = function(id) {
 	openfl.Assets.initialize();
 	var libraryName = id.substring(0,id.indexOf(":"));
@@ -10924,7 +10986,10 @@ openfl.Assets.getPath = function(id) {
 openfl.Assets.getSound = function(id,useCache) {
 	if(useCache == null) useCache = true;
 	openfl.Assets.initialize();
-	if(useCache && openfl.Assets.cache.enabled && openfl.Assets.cache.sound.exists(id)) return openfl.Assets.cache.sound.get(id);
+	if(useCache && openfl.Assets.cache.enabled && openfl.Assets.cache.sound.exists(id)) {
+		var sound = openfl.Assets.cache.sound.get(id);
+		if(openfl.Assets.isValidSound(sound)) return sound;
+	}
 	var libraryName = id.substring(0,id.indexOf(":"));
 	var symbolName = HxOverrides.substr(id,id.indexOf(":") + 1,null);
 	var library = openfl.Assets.getLibrary(libraryName);
@@ -10970,6 +11035,9 @@ openfl.Assets.isLocal = function(id,type,useCache) {
 	return false;
 }
 openfl.Assets.isValidBitmapData = function(bitmapData) {
+	return true;
+}
+openfl.Assets.isValidSound = function(sound) {
 	return true;
 }
 openfl.Assets.loadBitmapData = function(id,handler,useCache) {
@@ -11041,6 +11109,27 @@ openfl.Assets.loadLibrary = function(name,handler) {
 		library.load(handler);
 	} else console.log("[openfl.Assets] There is no asset library named \"" + name + "\"");
 }
+openfl.Assets.loadMusic = function(id,handler,useCache) {
+	if(useCache == null) useCache = true;
+	openfl.Assets.initialize();
+	if(useCache && openfl.Assets.cache.enabled && openfl.Assets.cache.sound.exists(id)) {
+		handler(openfl.Assets.cache.sound.get(id));
+		return;
+	}
+	var libraryName = id.substring(0,id.indexOf(":"));
+	var symbolName = HxOverrides.substr(id,id.indexOf(":") + 1,null);
+	var library = openfl.Assets.getLibrary(libraryName);
+	if(library != null) {
+		if(library.exists(symbolName,openfl.AssetType.MUSIC)) {
+			if(useCache && openfl.Assets.cache.enabled) library.loadMusic(symbolName,function(sound) {
+				openfl.Assets.cache.sound.set(id,sound);
+				handler(sound);
+			}); else library.loadMusic(symbolName,handler);
+			return;
+		} else console.log("[openfl.Assets] There is no Sound asset with an ID of \"" + id + "\"");
+	} else console.log("[openfl.Assets] There is no asset library named \"" + libraryName + "\"");
+	handler(null);
+}
 openfl.Assets.loadMovieClip = function(id,handler) {
 	openfl.Assets.initialize();
 	var libraryName = id.substring(0,id.indexOf(":"));
@@ -11058,8 +11147,11 @@ openfl.Assets.loadSound = function(id,handler,useCache) {
 	if(useCache == null) useCache = true;
 	openfl.Assets.initialize();
 	if(useCache && openfl.Assets.cache.enabled && openfl.Assets.cache.sound.exists(id)) {
-		handler(openfl.Assets.cache.sound.get(id));
-		return;
+		var sound = openfl.Assets.cache.sound.get(id);
+		if(openfl.Assets.isValidSound(sound)) {
+			handler(sound);
+			return;
+		}
 	}
 	var libraryName = id.substring(0,id.indexOf(":"));
 	var symbolName = HxOverrides.substr(id,id.indexOf(":") + 1,null);
