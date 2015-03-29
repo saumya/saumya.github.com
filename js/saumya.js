@@ -2,7 +2,13 @@
 $(document).foundation();
 //listen for jQuery 'ready'
 $(document).ready(function(){
-  var message = 'Running FlashPlayer Version '+flashUtil.getFlashVersion()+' !';
+  var v = flashUtil.getFlashVersion();
+  var message = '';
+  if(v==='Disabled'){
+    message = 'No FlashPlayer detected.';
+  }else{
+    message = 'Running FlashPlayer Version '+flashUtil.getFlashVersion()+' .';
+  }
   $("#flashplayerinfo").text(message);
 });
 //Flash Utility
