@@ -10,6 +10,25 @@ $(document).ready(function(){
     message = 'Running FlashPlayer Version '+flashUtil.getFlashVersion()+' .';
   }
   $("#flashplayerinfo").text(message);
+  //
+  $("#idGameOn").on('click',function(event){
+    event.preventDefault;
+    //console.log(event);
+    //load the game
+    var aURL = 'js/saumya_game.js';
+    $.getScript( aURL )
+      .done(function( script, textStatus ) {
+        console.log( 'SUCCESS : GameEngine Load',textStatus );
+      })
+      .fail(function( jqxhr, settings, exception ) {
+        //$( "div.log" ).text( "Triggered ajaxError handler." );
+        console.log('FAIL : GameEngine Load',jqxhr);
+        console.log('settings',settings);
+        console.log('exception',exception);
+    });
+    //return false
+    return false;
+  });
 });
 //Flash Utility
 var flashUtil = {
