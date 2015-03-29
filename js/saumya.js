@@ -18,13 +18,15 @@ $(document).ready(function(){
     var aURL = 'js/saumya_game.js';
     $.getScript( aURL )
       .done(function( script, textStatus ) {
-        console.log( 'SUCCESS : GameEngine Load',textStatus );
+        //console.log( 'SUCCESS : GameEngine Load',textStatus );
+        $('#idGameOn').text('Loading Enigne. Please wait.');
       })
       .fail(function( jqxhr, settings, exception ) {
         //$( "div.log" ).text( "Triggered ajaxError handler." );
         console.log('FAIL : GameEngine Load',jqxhr);
         console.log('settings',settings);
         console.log('exception',exception);
+        $('#idGameOn').text('ERROR : Loading Enigne. Please, Try Again.');
     });
     //return false
     return false;

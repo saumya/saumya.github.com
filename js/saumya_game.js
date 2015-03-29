@@ -14,6 +14,7 @@
 	    console.log('FAIL : Phaser Load',jqxhr);
         console.log('settings',settings);
         console.log('exception',exception);
+        $('#idGameOn').text('ERROR : Loading Enigne. Please, Try Again.');
 	});
 	var gameEngine = {
 		start : function(){
