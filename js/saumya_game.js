@@ -1,4 +1,11 @@
 //
+// Ref : 
+// Game Assets : 
+// 1. http://kenney.nl/assets/animal-pac
+// 2. http://www.pixelprospector.com/the-big-list-of-royalty-free-graphics/
+// 3. https://www.makeschool.com/gamernews/277/20-best-free-art-resources-for-game-developers
+// 4. http://www.gameartguppy.com/
+//
 (function(){
 	console.log('Game On !');
 	//var aURL = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js";
@@ -35,6 +42,10 @@
 			//this.game.load.image('buttons', 'img/game_ui_buttons.png');
 			//this.game.load.spritesheet('buttons', 'img/game_ui_buttons.png',100,100);
 			this.game.load.spritesheet('buttons', 'img/game_ui_buttons.png',34.5,34.5);
+			//
+			this.game.load.atlasXML('animals', 'img/round_outline.png', 'img/round_outline.xml');
+			//this.game.load.atlas('animals', 'img/round_outline.png', 'img/round_outline.json');
+			//
 			//initialise the properties and methods
 			//properties
 			this.aScore = 0;
@@ -55,7 +66,13 @@
 			//this.btnHome.animations.add('btnHomeAnim',[12,13,14,15],1,true,true);
 			//
 			//var button = this.game.add.button(this.game.world.centerX - 95, 400, 'buttons', null, this, over, out, down,up);
-			this.btnHome = this.game.add.button(10, 10, 'buttons',this.onHomeClick,this,1,3,2,0);
+			//this.btnHome = this.game.add.button(10, 10, 'buttons',this.onHomeClick,this,1,3,2,0);
+			this.btnHome = this.game.add.button(10, 10, 'buttons',this.onHomeClick,this,29,31,30,28);
+			var btnWrong = this.game.add.button(10, 50, 'buttons',this.onHomeClick,this,28,28);
+			var btnRight = this.game.add.button(10, 100, 'buttons',this.onHomeClick,this,45,45);
+			//
+			var spriteHippo = this.game.add.tileSprite(0, 0, 295, 295, 'animals', 'hippo.png');
+			spriteHippo.scale.x = spriteHippo.scale.y = 0.5;
 			
 		},
 		update : function(){
