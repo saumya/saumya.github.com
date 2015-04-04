@@ -15,7 +15,7 @@ $(document).ready(function(){
     event.preventDefault;
     //console.log(event);
     //load the game
-    var aURL = 'js/saumya_game.js';
+    var aURL = 'js/gameSayWho.js';
     $.getScript( aURL )
       .done(function( script, textStatus ) {
         //console.log( 'SUCCESS : GameEngine Load',textStatus );
