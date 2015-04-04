@@ -87,6 +87,12 @@
 			//
 			this.scoreText = this.game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#fff' });
 			*/
+			
+			//
+			this.spriteQuestion = this.game.add.tileSprite(this.game.world.centerX, this.game.world.centerY-70, 376, 310, 'animals', 'elephant.png');
+			this.spriteQuestion.anchor.set(0.5,0.5);
+			this.spriteQuestion.scale.set(0.6,0.6);
+			//
 			this.spriteElephant = this.game.add.tileSprite(0, 50, 376, 310, 'animals', 'elephant.png');
 			this.spriteGiraffe = this.game.add.tileSprite(376, 50, 334, 350, 'animals', 'giraffe.png');
 			this.spriteHippo = this.game.add.tileSprite(710, 50, 294, 293, 'animals', 'hippo.png');
@@ -111,18 +117,33 @@
 			this.gAllAnimals.add(this.spriteSnake);
 			//
 			this.gAllAnimals.scale.set(0.3,0.3);
+			this.gAllAnimals.y = this.game._height-150;
 			//  Make them all input enabled
-    		this.gAllAnimals.setAll('inputEnabled', true);
+    		//this.gAllAnimals.setAll('inputEnabled', true);
+    		//this.gAllAnimals.callAll('input.enableDrag', 'input');
+    		//
+    		//this.game.add.tween(this.gAllAnimals.scale).to( {x: 1.2, y: 1.2}, 1000, Phaser.Easing.Back.InOut, true, 0, false).yoyo(true);
+    		//this.game.add.tween(this.gAllAnimals.x).to( {x: 1.2, y: 1.2}, 1000, Phaser.Easing.Back.InOut, true, 0, false).yoyo(true);
+    		//
+    		this.scoreText = this.game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#fff' });
 		},
 		update : function(){
 			//console.log('update');
 			//this.sprite.animations.play('spriteAnim');
 			//this.game.debug.renderText(this.btnHome.frame, 32, 32);
+			this.gAllAnimals.x -= 1;
+			console.log(this.gAllAnimals.x);
+			if(this.gAllAnimals.x<-1000){
+				this.gAllAnimals.x = this.game._width;
+			}
+			//
+			
 		},
 		render: function(){
 			//console.log('rendder');
 			//this.game.debug.renderText(this.btnHome.frame, 32, 32);
 			//this.game.debug.spriteInfo(this.spriteHippo, 32, 32);
+
 		},
 		end : function(){
 			console.log('Game Engine : End');
