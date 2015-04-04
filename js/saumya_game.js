@@ -44,7 +44,7 @@
 			var a = $("#gameX");
 			var wX = a.width();
 			var hX = 400;
-			this.game = new Phaser.Game(wX, hX, Phaser.AUTO, 'gameX', { preload: this.preload, create: this.create, update: this.update });
+			this.game = new Phaser.Game(wX, hX, Phaser.AUTO, 'gameX', { preload: this.preload, create: this.create, update: this.update, render:this.render });
 			/*
 			this.mainState = {
 				preload: function(){
@@ -109,31 +109,34 @@
 
 			this.game.stage.backgroundColor = '#990000';
 
-			//this.btnHome = this.game.add.sprite(10,10,'buttons',12);
-			//this.btnHome.animations.add('btnHomeAnim',[12,13,14,15],1,true,true);
+			//this.sprite = this.game.add.sprite(10,10,'buttons',12);
+			//this.sprite.animations.add('spriteAnim',[12,13,14,15],1,true,true);
 			//
-			//var button = this.game.add.button(this.game.world.centerX - 95, 400, 'buttons', null, this, over, out, down,up);
-			//this.btnHome = this.game.add.button(10, 10, 'buttons',this.onHomeClick,this,1,3,2,0);
+			//var button = this.game.add.button(x, y, 'buttons', handler, scope, over, out, down,up);
+			/*
 			this.btnHome = this.game.add.button(10, 10, 'buttons',this.onHomeClick,this,29,31,30,28);
 			var btnWrong = this.game.add.button(10, 50, 'buttons',this.onHomeClick,this,28,28);
 			var btnRight = this.game.add.button(10, 100, 'buttons',this.onHomeClick,this,45,45);
+			*/
 			//
-			var spriteHippo = this.game.add.tileSprite(this.cX, 100, 295, 295, 'animals', 'hippo.png');
+			/*
+			this.spriteHippo = this.game.add.tileSprite(this.game.world.centerX, 100, 295, 295, 'animals', 'hippo.png');
 			//spriteHippo.scale.x = spriteHippo.scale.y = 0.5;
-			spriteHippo.anchor.set(0.5);
-			spriteHippo.scale.setTo(0.4,0.4);
+			this.spriteHippo.anchor.set(0.5);
+			this.spriteHippo.scale.setTo(0.4,0.4);
 			//
 			this.scoreText = this.game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#fff' });
-			
+			*/
 		},
 		update : function(){
 			//console.log('update');
-			//this.btnHome.animations.play('btnHomeAnim');
+			//this.sprite.animations.play('spriteAnim');
 			//this.game.debug.renderText(this.btnHome.frame, 32, 32);
 		},
 		render: function(){
-			console.log('rendder');
+			//console.log('rendder');
 			//this.game.debug.renderText(this.btnHome.frame, 32, 32);
+			this.game.debug.spriteInfo(this.spriteHippo, 32, 32);
 		},
 		end : function(){
 			console.log('Game Engine : End');
