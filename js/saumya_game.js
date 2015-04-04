@@ -53,46 +53,87 @@
 			//
 			//initialise the properties and methods
 			//properties
+			this.counter = 50;
+			this.tCounter = null;
 			this.aScore = 0;
 			this.aLife = 100;
 			this.cX = this.game._width/2;
 			this.cY = this.game._height/2;
-			//methods
-			this.onHomeClick = function(evtObj){
-				console.log('onHomeClick : ',evtObj);
-				console.log('onHomeClick : this : ',this);
+			this.questions = ['elephant','giraffe','hippo','monkey','panda','parrot','penguin','pig','rabbit','snake'];
+			this.correctAnswer = 0;
+			//event Handlers
+			this.onPlayClick = function(evtObj){
+				console.log('onPlayClick : ',evtObj);
+				console.log('onPlayClick : this : ',this);
+				this.btnPlay.visible = false;
+				this.renderQuestion();
+			};
+			this.updateCounter = function(){
+				this.counter--;
+				this.tCounter.setText(this.counter);
+				if(this.counter<=0){
+					//this.game.paused = true;
+				}	
+			};
+			this.renderQuestion = function(){
+				this.correctAnswer = Math.floor(Math.random()*10);
+				console.log('correctAnswer:',this.correctAnswer);
+				console.log('correctAnswer:',this.questions[this.correctAnswer]);
+				var posX = this.game.world.centerX ;
+				var posY = this.game.world.centerY-70 ;
 
+				switch(this.correctAnswer){
+					case 0:
+						this.spriteQuestion = this.game.add.tileSprite(posX, posY, 376, 310, 'animals', 'elephant.png');
+					break;
+					case 1:
+						this.spriteQuestion = this.game.add.tileSprite(posX, posY, 334, 350, 'animals', 'giraffe.png');
+					break;
+					case 2:
+						this.spriteQuestion = this.game.add.tileSprite(posX, posY, 294, 293, 'animals', 'hippo.png');
+					break;
+					case 3:
+						this.spriteQuestion = this.game.add.tileSprite(posX, posY, 336, 285, 'animals', 'monkey.png');
+					break;
+					case 4:
+						this.spriteQuestion = this.game.add.tileSprite(posX, posY, 332, 285, 'animals', 'panda.png');
+					break;
+					case 5:
+						this.spriteQuestion = this.game.add.tileSprite(posX, posY, 284, 285, 'animals', 'parrot.png');
+					break;
+					case 6 :
+						this.spriteQuestion = this.game.add.tileSprite(posX, posY, 284, 285, 'animals', 'penguin.png');
+					break;
+					case 7:
+						this.spriteQuestion = this.game.add.tileSprite(posX, posY, 316, 285, 'animals', 'pig.png');
+					break;
+					case 8:
+						this.spriteQuestion = this.game.add.tileSprite(posX, posY, 284, 370, 'animals', 'rabbit.png');
+					break;
+					case 9:
+						this.spriteQuestion = this.game.add.tileSprite(posX, posY, 284, 321, 'animals', 'snake.png');
+					break;
+					default:
+						console.error('DEFAULT : CASE : Not Handled!');
+					break;
+				}
+
+				this.spriteQuestion.anchor.set(0.5,0.5);
+				this.spriteQuestion.scale.set(0.6,0.6);
 			};
 		},
 		create : function(){
-			console.log('Phaser : create');
-
 			this.game.stage.backgroundColor = '#990000';
-
-			//this.sprite = this.game.add.sprite(10,10,'buttons',12);
-			//this.sprite.animations.add('spriteAnim',[12,13,14,15],1,true,true);
 			//
-			//var button = this.game.add.button(x, y, 'buttons', handler, scope, over, out, down,up);
+			this.btnPlay = this.game.add.button(this.game.world.centerX, this.game.world.centerY, 'buttons',this.onPlayClick,this,1,3,2,0);
+			this.btnPlay.anchor.set(0.5,0.5);
 			/*
-			this.btnHome = this.game.add.button(10, 10, 'buttons',this.onHomeClick,this,29,31,30,28);
-			var btnWrong = this.game.add.button(10, 50, 'buttons',this.onHomeClick,this,28,28);
-			var btnRight = this.game.add.button(10, 100, 'buttons',this.onHomeClick,this,45,45);
-			*/
-			//
-			/*
-			this.spriteHippo = this.game.add.tileSprite(this.game.world.centerX, 100, 295, 295, 'animals', 'hippo.png');
-			//spriteHippo.scale.x = spriteHippo.scale.y = 0.5;
-			this.spriteHippo.anchor.set(0.5);
-			this.spriteHippo.scale.setTo(0.4,0.4);
-			//
-			this.scoreText = this.game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#fff' });
-			*/
-			
-			//
+			//questions
 			this.spriteQuestion = this.game.add.tileSprite(this.game.world.centerX, this.game.world.centerY-70, 376, 310, 'animals', 'elephant.png');
 			this.spriteQuestion.anchor.set(0.5,0.5);
 			this.spriteQuestion.scale.set(0.6,0.6);
-			//
+			*/
+			/*
 			this.spriteElephant = this.game.add.tileSprite(0, 50, 376, 310, 'animals', 'elephant.png');
 			this.spriteGiraffe = this.game.add.tileSprite(376, 50, 334, 350, 'animals', 'giraffe.png');
 			this.spriteHippo = this.game.add.tileSprite(710, 50, 294, 293, 'animals', 'hippo.png');
@@ -118,6 +159,7 @@
 			//
 			this.gAllAnimals.scale.set(0.3,0.3);
 			this.gAllAnimals.y = this.game._height-150;
+			*/
 			//  Make them all input enabled
     		//this.gAllAnimals.setAll('inputEnabled', true);
     		//this.gAllAnimals.callAll('input.enableDrag', 'input');
@@ -125,19 +167,36 @@
     		//this.game.add.tween(this.gAllAnimals.scale).to( {x: 1.2, y: 1.2}, 1000, Phaser.Easing.Back.InOut, true, 0, false).yoyo(true);
     		//this.game.add.tween(this.gAllAnimals.x).to( {x: 1.2, y: 1.2}, 1000, Phaser.Easing.Back.InOut, true, 0, false).yoyo(true);
     		//
+
+    		/*
     		this.scoreText = this.game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#fff' });
+    		// Pause the game
+    		//this.game.paused = true;
+    		
+    		//game.input.onDown.add(unpause, self);
+    		//menu.destroy();
+    		
+    		//
+    		this.tCounter = this.game.add.text(this.game.world.width-40, 40, this.counter, { font: "32px Arial", fill: "#ffffff", align: "center" });
+    		this.tCounter.anchor.setTo(0.5, 0.5);
+    		//Timer
+    		this.game.time.events.loop(Phaser.Timer.SECOND, this.updateCounter, this);
+    		//this.game.time.events.add(Phaser.Timer.SECOND * 4, this.hideQuestion, this);
+    		*/
 		},
 		update : function(){
 			//console.log('update');
 			//this.sprite.animations.play('spriteAnim');
 			//this.game.debug.renderText(this.btnHome.frame, 32, 32);
+			/*
 			this.gAllAnimals.x -= 1;
-			console.log(this.gAllAnimals.x);
+			//console.log(this.gAllAnimals.x);
 			if(this.gAllAnimals.x<-1000){
 				this.gAllAnimals.x = this.game._width;
 			}
+			*/
 			//
-			
+			//this.scoreText.text = +1;
 		},
 		render: function(){
 			//console.log('rendder');
