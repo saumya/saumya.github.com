@@ -120,6 +120,14 @@
 
 				this.spriteQuestion.anchor.set(0.5,0.5);
 				this.spriteQuestion.scale.set(0.6,0.6);
+				this.game.time.events.add(Phaser.Timer.SECOND * 4, this.fadePicture, this);
+			};
+			this.fadePicture = function(){
+				var t = this.game.add.tween(this.spriteQuestion).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
+				t.onComplete.add(this.onFadeComplete, this);
+			};
+			this.onFadeComplete = function(){
+				this.renderQuestion();
 			};
 		},
 		create : function(){
