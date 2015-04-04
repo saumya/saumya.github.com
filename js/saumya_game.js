@@ -45,49 +45,9 @@
 			var wX = a.width();
 			var hX = 400;
 			this.game = new Phaser.Game(wX, hX, Phaser.AUTO, 'gameX', { preload: this.preload, create: this.create, update: this.update, render:this.render });
-			/*
-			this.mainState = {
-				preload: function(){
-					console.log('mainState : preload');
-				},
-				create : function(){
-					console.log('mainState : create');
-					//var btnWrong = this.game.add.button(10, 50, 'buttons',this.onHomeClick,this,28,28);
-					this.scoreText = this.game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#fff' });
-				},
-				update : function(){
-					//console.log('mainState : update');
-				},
-				shutdown : function(){}
-			};
-			//
-			this.menuState = {
-				preload: function(){
-					console.log('menuState : preload');
-				},
-				create : function(){
-					console.log('menuState : create');
-					//var btnWrong = this.game.add.button(10, 50, 'buttons',this.onHomeClick,this,28,28);
-					this.scoreText = this.game.add.text(16, 16, 'Menu', { fontSize: '32px', fill: '#fff' });
-				},
-				update : function(){
-					//console.log('menuState : update');
-				},
-				shutdown : function(){}
-			};
-			
-			//states
-			this.game.state.add('main',this.mainState);
-			this.game.state.add('menu',this.menuState);
-			this.game.state.start('menu');
-			*/
 		},
 		preload : function(){
-			console.log('Phaser : preload : ');
-			//this.game.load.image('buttons', 'img/game_ui_buttons.png');
-			//this.game.load.spritesheet('buttons', 'img/game_ui_buttons.png',100,100);
 			this.game.load.spritesheet('buttons', 'img/game_ui_buttons.png',34.5,34.5);
-			//
 			this.game.load.atlasXML('animals', 'img/round_outline.png', 'img/round_outline.xml');
 			//this.game.load.atlas('animals', 'img/round_outline.png', 'img/round_outline.json');
 			//
@@ -127,6 +87,32 @@
 			//
 			this.scoreText = this.game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#fff' });
 			*/
+			this.spriteElephant = this.game.add.tileSprite(0, 50, 376, 310, 'animals', 'elephant.png');
+			this.spriteGiraffe = this.game.add.tileSprite(376, 50, 334, 350, 'animals', 'giraffe.png');
+			this.spriteHippo = this.game.add.tileSprite(710, 50, 294, 293, 'animals', 'hippo.png');
+			this.spriteMonkey = this.game.add.tileSprite(1004, 50, 336, 285, 'animals', 'monkey.png');
+			this.spritePanda = this.game.add.tileSprite(1340, 50, 332, 285, 'animals', 'panda.png');
+			this.spriteParrot = this.game.add.tileSprite(1672, 50, 284, 285, 'animals', 'parrot.png');
+			this.spritePenguin = this.game.add.tileSprite(1956, 50, 284, 285, 'animals', 'penguin.png');
+			this.spritePig = this.game.add.tileSprite(2240, 50, 316, 285, 'animals', 'pig.png');
+			this.spriteRabbit = this.game.add.tileSprite(2525, 50, 284, 370, 'animals', 'rabbit.png');
+			this.spriteSnake = this.game.add.tileSprite(2809, 50, 284, 321, 'animals', 'snake.png');
+			// group
+			this.gAllAnimals = this.game.add.group();
+			this.gAllAnimals.add(this.spriteElephant);
+			this.gAllAnimals.add(this.spriteGiraffe);
+			this.gAllAnimals.add(this.spriteHippo);
+			this.gAllAnimals.add(this.spriteMonkey);
+			this.gAllAnimals.add(this.spritePanda);
+			this.gAllAnimals.add(this.spriteParrot);
+			this.gAllAnimals.add(this.spritePenguin);
+			this.gAllAnimals.add(this.spritePig);
+			this.gAllAnimals.add(this.spriteRabbit);
+			this.gAllAnimals.add(this.spriteSnake);
+			//
+			this.gAllAnimals.scale.set(0.3,0.3);
+			//  Make them all input enabled
+    		this.gAllAnimals.setAll('inputEnabled', true);
 		},
 		update : function(){
 			//console.log('update');
@@ -136,7 +122,7 @@
 		render: function(){
 			//console.log('rendder');
 			//this.game.debug.renderText(this.btnHome.frame, 32, 32);
-			this.game.debug.spriteInfo(this.spriteHippo, 32, 32);
+			//this.game.debug.spriteInfo(this.spriteHippo, 32, 32);
 		},
 		end : function(){
 			console.log('Game Engine : End');
