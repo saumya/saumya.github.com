@@ -25,15 +25,6 @@
         $('#idGameOn').text('ERROR : Loading Enigne. Please, Try Again.');
 	});
 	//
-	var GameUtil = {
-		init : function(){
-			console.log('GameUtil:init');
-		},
-		test : function(){
-			console.log('GameUtil.test');
-		}
-	};
-	//
 // Ref :
 // SpriteSheet : 
 // http://www.gameart2d.com/freebies.html
