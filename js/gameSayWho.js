@@ -46,6 +46,8 @@
 			//properties
 			this.MAX_LIFE = 50;
 			this.counter = this.MAX_LIFE;
+			this.isUserAnswered = false;
+			this.isUserWon = false;
 			this.tCounter = null;
 			this.aScore = 0;
 			this.scoreText = null;
@@ -68,7 +70,6 @@
 				this.showGameInfo(true);
 			};
 			this.updateCounter = function(){
-				this.counter--;
 				this.tCounter.setText(this.counter);
 				if(this.counter<=0){
 					this.optionTimer.stop();
@@ -77,10 +78,31 @@
 					this.aScore -= 1;
 					this.scoreText.setText('score: '+(this.aScore));
 					this.gAllAnimals.visible = false;
-					this.renderQuestion();
 					//reset counter
 					this.counter = this.MAX_LIFE;
 					this.tCounter.setText(this.counter);
+					//
+					this.renderQuestion();
+				}else{
+					if(this.isUserAnswered===true){
+						if(this.isUserWon===true){
+							this.aScore += 1;
+						}else{
+							this.aScore -= 1;
+						}
+						this.optionTimer.stop();
+						this.optionTimer.destroy();
+						//
+						this.scoreText.setText('score: '+(this.aScore));
+						this.gAllAnimals.visible = false;
+						//reset counter
+						this.counter = this.MAX_LIFE;
+						this.tCounter.setText(this.counter);
+						//
+						this.isUserAnswered = false;
+						//
+						this.renderQuestion();
+					}
 				}	
 			};
 			this.renderQuestion = function(){
@@ -146,6 +168,22 @@
     			this.optionTimer.loop(1000,this.updateCounter,this);
 				this.optionTimer.start();
 			};
+			this.onSpriteSelect = function(eventTarget){
+				console.log('onSpriteSelect:Value:',eventTarget.value);
+				this.isUserAnswered = true;
+				var userValue = eventTarget.value;
+				if (userValue===this.correctAnswer) {
+					this.isUserWon = true;
+				}else{
+					this.isUserWon = false;
+				}
+			};
+			this.enableEventHandler = function(spriteRef){
+				spriteRef.inputEnabled = true;
+				spriteRef.input.priorityID = 1;
+				spriteRef.input.useHandCursor = true;
+				spriteRef.events.onInputDown.add(this.onSpriteSelect, this); 
+			};
 		},
 		create : function(){
 			this.game.stage.backgroundColor = '#990000';
@@ -163,6 +201,33 @@
 			this.spritePig = this.game.add.tileSprite(2240, 50, 316, 285, 'animals', 'pig.png');
 			this.spriteRabbit = this.game.add.tileSprite(2525, 50, 284, 370, 'animals', 'rabbit.png');
 			this.spriteSnake = this.game.add.tileSprite(2809, 50, 284, 321, 'animals', 'snake.png');
+			// Enable Event Handler
+			this.spriteElephant.value = 0;
+			this.spriteGiraffe.value = 1;
+			this.spriteHippo.value = 2;
+			this.spriteMonkey.value = 3;
+			this.spritePanda.value = 4;
+			this.spriteParrot.value = 5;
+			this.spritePenguin.value = 6;
+			this.spritePig.value = 7;
+			this.spriteRabbit.value = 8;
+			this.spriteSnake.value = 9;
+			this.enableEventHandler(this.spriteElephant);
+			this.enableEventHandler(this.spriteGiraffe);
+			this.enableEventHandler(this.spriteHippo);
+			this.enableEventHandler(this.spriteMonkey);
+			this.enableEventHandler(this.spritePanda);
+			this.enableEventHandler(this.spriteParrot);
+			this.enableEventHandler(this.spritePenguin);
+			this.enableEventHandler(this.spritePig);
+			this.enableEventHandler(this.spriteRabbit);
+			this.enableEventHandler(this.spriteSnake);
+			/*
+			this.spriteElephant.inputEnabled = true;
+			this.spriteElephant.input.priorityID = 1;
+			this.spriteElephant.input.useHandCursor = true;
+			this.spriteElephant.events.onInputDown.add(this.onSElephant, this);
+			*/ 
 			// group
 			this.gAllAnimals = this.game.add.group();
 			this.gAllAnimals.add(this.spriteElephant);
