@@ -44,26 +44,44 @@
 			//
 			//initialise the properties and methods
 			//properties
-			this.counter = 50;
+			this.MAX_LIFE = 10;
+			this.counter = this.MAX_LIFE;
 			this.tCounter = null;
 			this.aScore = 0;
+			this.scoreText = null;
 			this.aLife = 100;
 			this.cX = this.game._width/2;
 			this.cY = this.game._height/2;
 			this.questions = ['elephant','giraffe','hippo','monkey','panda','parrot','penguin','pig','rabbit','snake'];
 			this.correctAnswer = 0;
+			this.gAllAnimals = null;//Group containing the option animal
 			//event Handlers
+			this.showGameInfo = function(shouldShow){
+				this.scoreText.visible = shouldShow;
+				this.tCounter.visible = shouldShow;
+			};
 			this.onPlayClick = function(evtObj){
 				console.log('onPlayClick : ',evtObj);
 				console.log('onPlayClick : this : ',this);
 				this.btnPlay.visible = false;
 				this.renderQuestion();
+				this.showGameInfo(true);
 			};
 			this.updateCounter = function(){
 				this.counter--;
+				console.log('updateCounter',this.counter);
 				this.tCounter.setText(this.counter);
 				if(this.counter<=0){
-					//this.game.paused = true;
+					this.optionTimer.stop();
+					this.optionTimer.destroy();
+					//TODO: provide wrong feedback
+					this.aScore -= 1;
+					this.scoreText.setText('score: '+(this.aScore));
+					this.gAllAnimals.visible = false;
+					this.renderQuestion();
+					//reset counter
+					this.counter = this.MAX_LIFE;
+					this.tCounter.setText(this.counter);
 				}	
 			};
 			this.renderQuestion = function(){
@@ -108,17 +126,26 @@
 						console.error('DEFAULT : CASE : Not Handled!');
 					break;
 				}
-
 				this.spriteQuestion.anchor.set(0.5,0.5);
 				this.spriteQuestion.scale.set(0.6,0.6);
 				this.game.time.events.add(Phaser.Timer.SECOND * 4, this.fadePicture, this);
 			};
 			this.fadePicture = function(){
+				this.game.add.tween(this.spriteQuestion).from( { alpha: 1 });
 				var t = this.game.add.tween(this.spriteQuestion).to( { alpha: 0 }, 2000, Phaser.Easing.Linear.None, true);
 				t.onComplete.add(this.onFadeComplete, this);
 			};
 			this.onFadeComplete = function(){
-				this.renderQuestion();
+				this.spriteQuestion.destroy();
+				this.displayOptions();
+			};
+			this.displayOptions = function(){
+				this.gAllAnimals.visible = true;
+				this.gAllAnimals.x = this.game._width;
+				//
+				this.optionTimer = this.game.time.create(false);
+    			this.optionTimer.loop(1000,this.updateCounter,this);
+				this.optionTimer.start();
 			};
 		},
 		create : function(){
@@ -126,13 +153,7 @@
 			//
 			this.btnPlay = this.game.add.button(this.game.world.centerX, this.game.world.centerY, 'buttons',this.onPlayClick,this,1,3,2,0);
 			this.btnPlay.anchor.set(0.5,0.5);
-			/*
-			//questions
-			this.spriteQuestion = this.game.add.tileSprite(this.game.world.centerX, this.game.world.centerY-70, 376, 310, 'animals', 'elephant.png');
-			this.spriteQuestion.anchor.set(0.5,0.5);
-			this.spriteQuestion.scale.set(0.6,0.6);
-			*/
-			/*
+			//
 			this.spriteElephant = this.game.add.tileSprite(0, 50, 376, 310, 'animals', 'elephant.png');
 			this.spriteGiraffe = this.game.add.tileSprite(376, 50, 334, 350, 'animals', 'giraffe.png');
 			this.spriteHippo = this.game.add.tileSprite(710, 50, 294, 293, 'animals', 'hippo.png');
@@ -156,9 +177,12 @@
 			this.gAllAnimals.add(this.spriteRabbit);
 			this.gAllAnimals.add(this.spriteSnake);
 			//
-			this.gAllAnimals.scale.set(0.3,0.3);
-			this.gAllAnimals.y = this.game._height-150;
-			*/
+			this.gAllAnimals.scale.set(0.5,0.5);
+			this.gAllAnimals.x = this.game.world.width;
+			//this.gAllAnimals.y = this.game._height-150;
+			this.gAllAnimals.y = this.game.world.centerY-100;
+			this.gAllAnimals.visible = false;
+			
 			//  Make them all input enabled
     		//this.gAllAnimals.setAll('inputEnabled', true);
     		//this.gAllAnimals.callAll('input.enableDrag', 'input');
@@ -167,8 +191,9 @@
     		//this.game.add.tween(this.gAllAnimals.x).to( {x: 1.2, y: 1.2}, 1000, Phaser.Easing.Back.InOut, true, 0, false).yoyo(true);
     		//
 
-    		/*
+    		
     		this.scoreText = this.game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#fff' });
+    		this.scoreText.visible = false;
     		// Pause the game
     		//this.game.paused = true;
     		
@@ -178,22 +203,32 @@
     		//
     		this.tCounter = this.game.add.text(this.game.world.width-40, 40, this.counter, { font: "32px Arial", fill: "#ffffff", align: "center" });
     		this.tCounter.anchor.setTo(0.5, 0.5);
+    		this.tCounter.visible = false;
     		//Timer
-    		this.game.time.events.loop(Phaser.Timer.SECOND, this.updateCounter, this);
+    		//this.game.time.events.loop(Phaser.Timer.SECOND, this.updateCounter, this);
     		//this.game.time.events.add(Phaser.Timer.SECOND * 4, this.hideQuestion, this);
-    		*/
+    		
+    		this.optionTimer = this.game.time.create(false);
+    		this.optionTimer.loop(1000,this.updateCounter,this);
+
+    		//gTimer =this.optionTimer;
+    		
 		},
 		update : function(){
 			//console.log('update');
 			//this.sprite.animations.play('spriteAnim');
 			//this.game.debug.renderText(this.btnHome.frame, 32, 32);
-			/*
-			this.gAllAnimals.x -= 1;
+			
+			
 			//console.log(this.gAllAnimals.x);
-			if(this.gAllAnimals.x<-1000){
-				this.gAllAnimals.x = this.game._width;
+			if(this.gAllAnimals.visible===true){
+				this.gAllAnimals.x -= 5;
+				if(this.gAllAnimals.x<-1500){
+					this.gAllAnimals.x = this.game._width;
+				}
 			}
-			*/
+			
+			
 			//
 			//this.scoreText.text = +1;
 		},
