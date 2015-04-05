@@ -1,11 +1,4 @@
 //
-// Ref : 
-// Game Assets : 
-// 1. http://kenney.nl/assets/animal-pac
-// 2. http://www.pixelprospector.com/the-big-list-of-royalty-free-graphics/
-// 3. https://www.makeschool.com/gamernews/277/20-best-free-art-resources-for-game-developers
-// 4. http://www.gameartguppy.com/
-//
 (function(){
 	console.log('Game On !');
 	//var aURL = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js";
@@ -66,6 +59,11 @@
 				console.log('onPlayClick : ',evtObj);
 				console.log('onPlayClick : this : ',this);
 				this.btnPlay.visible = false;
+				this.resultText.visible = false;
+				// Reset Counter
+				this.counter = this.MAX_LIFE;
+				this.tCounter.setText(this.counter);
+				//
 				this.renderQuestion();
 				this.showGameInfo(true);
 			};
@@ -79,17 +77,19 @@
 					this.aScore -= 1;
 					this.scoreText.setText('score: '+(this.aScore));
 					this.gAllAnimals.visible = false;
-					//reset counter
-					this.counter = this.MAX_LIFE;
-					this.tCounter.setText(this.counter);
 					//
-					this.renderQuestion();
+					this.resultText.setText('Time Up !');
+					this.resultText.visible = true;
+					//
+					this.btnPlay.visible = true;
 				}else{
 					if(this.isUserAnswered===true){
 						if(this.isUserWon===true){
 							this.aScore += 1;
+							this.resultText.setText('Correct');
 						}else{
 							this.aScore -= 1;
+							this.resultText.setText('Wrong');
 						}
 						this.optionTimer.stop();
 						this.optionTimer.destroy();
@@ -102,11 +102,13 @@
 						//
 						this.isUserAnswered = false;
 						//
-						this.renderQuestion();
+						this.resultText.visible = true;
+						this.btnPlay.visible = true;
 					}
 				}	
 			};
 			this.renderQuestion = function(){
+
 				this.correctAnswer = Math.floor(Math.random()*10);
 				console.log('correctAnswer:',this.correctAnswer);
 				console.log('correctAnswer:',this.questions[this.correctAnswer]);
@@ -272,6 +274,9 @@
     		//Timer
     		//this.game.time.events.loop(Phaser.Timer.SECOND, this.updateCounter, this);
     		//this.game.time.events.add(Phaser.Timer.SECOND * 4, this.hideQuestion, this);
+    		this.resultText = this.game.add.text(this.game.world.width/2, this.game.world.height/2 - 60, 'Correct', { fontSize: '48px', fill: '#fff' });
+    		this.resultText.anchor.setTo(0.5, 0.5);
+    		this.resultText.visible = false;
 		},
 		update : function(){
 			//console.log('update');
@@ -281,7 +286,7 @@
 			
 			//console.log(this.gAllAnimals.x);
 			if(this.gAllAnimals.visible===true){
-				this.gAllAnimals.x -= 5;
+				this.gAllAnimals.x -= 1;
 				if(this.gAllAnimals.x<-1500){
 					this.gAllAnimals.x = this.game._width;
 				}
