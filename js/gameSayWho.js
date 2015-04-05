@@ -2,8 +2,8 @@
 (function(){
 	console.log('Game On !');
 	//var aURL = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js";
-	var pahserURL = "js/vendor/phaser.js";
-	//var pahserURL = "https://cdnjs.cloudflare.com/ajax/libs/phaser/2.3.0/phaser.min.js";
+	//var pahserURL = "js/vendor/phaser.js";
+	var pahserURL = "https://cdnjs.cloudflare.com/ajax/libs/phaser/2.3.0/phaser.min.js";
 	$.getScript( pahserURL )
 	  .done(function( script, textStatus ) {
 	    console.log( 'SUCCESS : Phaser Load',textStatus );
