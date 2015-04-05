@@ -60,6 +60,7 @@
 				console.log('onPlayClick : this : ',this);
 				this.btnPlay.visible = false;
 				this.resultText.visible = false;
+				this.gameTitleText.visible = false;
 				// Reset Counter
 				this.counter = this.MAX_LIFE;
 				this.tCounter.setText(this.counter);
@@ -96,9 +97,6 @@
 						//
 						this.scoreText.setText('score: '+(this.aScore));
 						this.gAllAnimals.visible = false;
-						//reset counter
-						this.counter = this.MAX_LIFE;
-						this.tCounter.setText(this.counter);
 						//
 						this.isUserAnswered = false;
 						//
@@ -277,6 +275,16 @@
     		this.resultText = this.game.add.text(this.game.world.width/2, this.game.world.height/2 - 60, 'Correct', { fontSize: '48px', fill: '#fff' });
     		this.resultText.anchor.setTo(0.5, 0.5);
     		this.resultText.visible = false;
+    		//
+    		this.gameTitleText = this.game.add.text(this.game.world.width/2, this.game.world.height/2 - 60, 'Say Who ?', { fontSize: '48px', fill: '#ff0' });
+    		this.gameTitleText.anchor.setTo(0.5, 0.5);
+    		//this.gameTitleText.setText('Say Who ?');
+    		this.gameTitleText.visible = true;
+    		//
+    		this.thanksText = this.game.add.text(10, this.game.world.height - 20, 'Made with love and Phaser ( https://phaser.io )', { fontSize: '12px', fill: '#f00' });
+    		//this.thanksText.anchor.setTo(0.5, 0.5);
+    		//this.thanksText.setText('Made with love and Phaser ( https://phaser.io )');
+    		this.thanksText.visible = true;
 		},
 		update : function(){
 			//console.log('update');
