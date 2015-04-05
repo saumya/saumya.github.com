@@ -44,7 +44,7 @@
 			//
 			//initialise the properties and methods
 			//properties
-			this.MAX_LIFE = 10;
+			this.MAX_LIFE = 50;
 			this.counter = this.MAX_LIFE;
 			this.tCounter = null;
 			this.aScore = 0;
@@ -69,7 +69,6 @@
 			};
 			this.updateCounter = function(){
 				this.counter--;
-				console.log('updateCounter',this.counter);
 				this.tCounter.setText(this.counter);
 				if(this.counter<=0){
 					this.optionTimer.stop();
@@ -207,12 +206,6 @@
     		//Timer
     		//this.game.time.events.loop(Phaser.Timer.SECOND, this.updateCounter, this);
     		//this.game.time.events.add(Phaser.Timer.SECOND * 4, this.hideQuestion, this);
-    		
-    		this.optionTimer = this.game.time.create(false);
-    		this.optionTimer.loop(1000,this.updateCounter,this);
-
-    		//gTimer =this.optionTimer;
-    		
 		},
 		update : function(){
 			//console.log('update');
