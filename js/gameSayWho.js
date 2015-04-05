@@ -70,6 +70,7 @@
 				this.showGameInfo(true);
 			};
 			this.updateCounter = function(){
+				this.counter --;
 				this.tCounter.setText(this.counter);
 				if(this.counter<=0){
 					this.optionTimer.stop();
