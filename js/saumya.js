@@ -1,11 +1,11 @@
 //init Foundation
-$(document).foundation();
+//$(document).foundation();
 //listen for jQuery 'ready'
 $(document).ready(function(){
   var v = flashUtil.getFlashVersion();
   var message = '';
   if(v==='Disabled'){
-    message = 'No FlashPlayer detected.';
+    message = 'No FlashPlayer found.';
   }else{
     message = 'Running FlashPlayer Version '+flashUtil.getFlashVersion()+' .';
   }
@@ -14,12 +14,14 @@ $(document).ready(function(){
   $("#idGameOn").on('click',function(event){
     event.preventDefault;
     //console.log(event);
+    $('#idGameOn').text('Loading Enigne. Please wait.');
     //load the game
     var aURL = 'js/gameSayWho.js';
     $.getScript( aURL )
       .done(function( script, textStatus ) {
         //console.log( 'SUCCESS : GameEngine Load',textStatus );
-        $('#idGameOn').text('Loading Enigne. Please wait.');
+        //$('#idGameOn').text('Loading Enigne. Please wait.');
+        console.log('SUCCESS : GameEngine Loaded.');
       })
       .fail(function( jqxhr, settings, exception ) {
         //$( "div.log" ).text( "Triggered ajaxError handler." );
