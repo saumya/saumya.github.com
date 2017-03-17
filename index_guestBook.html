@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="description" content="Personal web presence. Blog, tutorials and information. Technology and life.">
-  <meta name="keywords" content="saumya, saumya ray, personal, blog, tutorials, free code, free samples, opensource, open source">
-  <meta name="author" content="Saumya Ray">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Saumya | Where there is a will, there is a way.</title>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Personal web presence. Blog, tutorials and information. Technology and life.">
+    <meta name="keywords" content="saumya, saumya ray, personal, blog, tutorials, free code, free samples, opensource, open source">
+    <meta name="author" content="Saumya Ray">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.3/css/bulma.min.css">
+    <title>Saumya : Guest Book</title>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-</head>
-<body>
+    <!-- React-Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css">
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.3/css/bulma.min.css">
 
+  </head>
+  <body>
+
+<!-- start -->
 <section class="hero is-dark is-medium is-bold">
   <!-- Hero header: will stick at the top -->
   <div class="hero-head">
@@ -38,7 +43,7 @@
     
     </div>
   </div>
-  
+
   <!-- Hero footer: will stick at the bottom -->
   <div class="hero-foot">
     <nav class="tabs">
@@ -182,50 +187,41 @@
       </div>
     </div>
   </div>
-</section>
+</section>    
+<!-- end -->    
 
-  
-    
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <p>
+            Thanking <a href="http://jgthms.com"><strong>Jeremy Thomas</strong></a> for making  <a href="http://bulma.io/"> <strong>Bulma</strong> </a>. 
+          </p>
+          <p>
+            <h4 class="title is-4">Copyright © 
+              <script type="text/javascript">
+                var d = new Date(); 
+                document.write(d.getFullYear());
+              </script>
+             , Saumya Ray.
+            </h4>
+          </p>
+        </div>
+      </div>
+    </footer>
 
-
-
-
-
-
-<footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <p>
-        Thanking <a href="http://jgthms.com"><strong>Jeremy Thomas</strong></a> for making  <a href="http://bulma.io/"> <strong>Bulma</strong> </a>. 
-      </p>
-      <p>
-        <h4 class="title is-4">Copyright © 
-          <script type="text/javascript">
-            var d = new Date(); 
-            document.write(d.getFullYear());
-          </script>
-         , Saumya Ray.
-        </h4>
-      </p>
-    </div>
-  </div>
-</footer>
-
-<!-- ReactGuestBook: Start -->
+    <!-- ReactGuestBook: Start -->
     <div id="react-app">
       <!-- Application -->
     </div>
     <script src="js/react-guestbook/bundle.js"></script>
     <!-- ReactGuestBook: End -->
 
-    
+    <!-- script -->
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <script src="js/saumya.js"></script>
 
-<!-- script -->
-<script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
-<script src="js/saumya.js"></script>
-
-</body>
+  </body>
 </html>
