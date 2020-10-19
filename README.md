@@ -18,12 +18,10 @@ Saumya
 
  - [API Development with Express and MySQL][wd-5]
  - [InVDO. Desktop Youtube Video player][wd-4]
- 
  - [Find Health][wd-1]
  	- [findHealth - Patient][wd-1-1]
  	- [findHealth - Doctor][wd-1-2]
  	- [findHealth - Clinic][wd-1-3]
-
  - [Desktop CSV Reader][wd-2]
  - [XpNS. Expense Tracker][wd-3]
 
