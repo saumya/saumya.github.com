@@ -11,7 +11,8 @@ Saumya
  - [Vishal Graphics][2]
  - [Saral Retail][3]
  - [Shree Creations][4]
- - [DzinersCombine Architects][5]
+ - [DzinersCombine Architects Version 1.0][5.1]
+ - [DzinersCombine Architects Version 2.0][5.1]
 
 
 #### Web Development
@@ -38,7 +39,8 @@ Saumya
 [2]: https://saumya.github.io/WebDesign_vishalgraphics/
 [3]: https://saumya.github.io/saral-retail/
 [4]: https://saumya.github.io/WebDesignDemo1/
-[5]: https://github.com/saumya/dcarchitects.in
+[5.1]: https://github.com/saumya/dcarchitects.in
+[5.2]: https://saumya.github.io/WebDesign_dcarchitects/
 [6]: http://dsamanta.com/
 
 [wd-2]: https://github.com/saumya/desktop-csv-reader
