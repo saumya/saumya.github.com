@@ -9,10 +9,11 @@ Saumya
  - [DS Amanta Photography][6]
  - [Malpani Mangoes][1]
  - [Vishal Graphics][2]
+ - [DzinersCombine Architects Version 2.0][5.2]
  - [Saral Retail][3]
  - [Shree Creations][4]
  - [DzinersCombine Architects Version 1.0][5.1]
- - [DzinersCombine Architects Version 2.0][5.1]
+ 
 
 
 #### Web Development
