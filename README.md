@@ -4,20 +4,12 @@ Saumya
 
 ### Projects
 
-#### Web Design
-
- - [DS Amanta Photography][6]
- - [Malpani Mangoes][1]
- - [Vishal Graphics][2]
- - [DzinersCombine Architects Version 2.0][5.2]
- - [Saral Retail][3]
- - [Shree Creations][4]
- - [DzinersCombine Architects Version 1.0][5.1]
- 
+The opensource projects that I have worked on.
 
 
 #### Web Development
 
+ - [Minstagram][wd-6]
  - [API for online Health Consultancy][wd-5]
  - [Charaka - Admin Dashboard][wd-1-3]
  - [FindHealth][wd-1]
@@ -28,6 +20,15 @@ Saumya
  - [InVDO. Youtube Video/Audio player. Desktop][wd-4]
  - [XpNS. Expense Tracker][wd-3]
 
+#### Web Design
+
+ - [DS Amanta Photography][6]
+ - [Malpani Mangoes][1]
+ - [Vishal Graphics][2]
+ - [DzinersCombine Architects Version 2.0][5.2]
+ - [Saral Retail][3]
+ - [Shree Creations][4]
+ - [DzinersCombine Architects Version 1.0][5.1]
 
 
 
@@ -48,6 +49,7 @@ Saumya
 [wd-3]: https://github.com/saumya/xpns
 [wd-4]: https://github.com/saumya/InVDO
 [wd-5]: https://github.com/saumya/NodeOrmApi_104
+[wd-6]: https://github.com/saumya/Minstagram
 
 [wd-1]: https://findhealth.today/
 [wd-1-1]: https://github.com/saumya/charaka_patient
